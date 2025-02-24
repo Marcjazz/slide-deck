@@ -14,13 +14,13 @@ Slide Deck is a lightweight, optimized slide presentation library designed for l
 To install the package, run:
 
 ```sh
-npm install slide-deck
+npm install @kuidjamarco/slide-deck
 ```
 
 or using yarn:
 
 ```sh
-yarn add slide-deck
+yarn add @kuidjamarco/slide-deck
 ```
 
 ## Usage
@@ -28,7 +28,7 @@ Import and use the `SlideDeck` component in your React project:
 
 ```tsx
 import React from 'react';
-import SlideDeck from 'slide-deck';
+import SlideDeck from '@kuidjamarco/slide-deck';
 
 const slides = [
   ['# Welcome to Light Slide Deck'],

@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 
 type SlideDeckControlPanelProps = {
-  slides: string[][]
+  slides: string[][],
+  // touch: boolean;
 }
 
 const SlideDeskControlPanel: React.FC<SlideDeckControlPanelProps> = ({
@@ -10,7 +11,7 @@ const SlideDeskControlPanel: React.FC<SlideDeckControlPanelProps> = ({
   const [verticalIndex, setVerticalIndex] = useState<number>(0)
   const [horizontalIndex, setHorizontalIndex] = useState<number>(0)
 
-  const slideUp = (
+  const slideDown = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | KeyboardEvent
   ) => {
     e.preventDefault()
@@ -21,7 +22,7 @@ const SlideDeskControlPanel: React.FC<SlideDeckControlPanelProps> = ({
     }
   }
 
-  const slideDown = (
+  const slideUp = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | KeyboardEvent
   ) => {
     e.preventDefault()
@@ -82,7 +83,7 @@ const SlideDeskControlPanel: React.FC<SlideDeckControlPanelProps> = ({
   }, [horizontalIndex, verticalIndex, slides])
 
   return (
-    <div className='absolute bottom-4 right-4'>
+    <div className='absolute bottom-4 right-4 flex flex-col gap-2'>
       <a className={`flex w-full justify-center`} onClick={slideUp}>
         <kbd
           className={`kbd btn h-fit ${
@@ -94,7 +95,7 @@ const SlideDeskControlPanel: React.FC<SlideDeckControlPanelProps> = ({
           ▲
         </kbd>
       </a>
-      <div className='flex w-full justify-center gap-12'>
+      <div className='flex w-full justify-center gap-4'>
         <a onClick={slideLeft}>
           <kbd
             className={`kbd btn h-fit ${
@@ -104,6 +105,7 @@ const SlideDeskControlPanel: React.FC<SlideDeckControlPanelProps> = ({
             ◀︎
           </kbd>
         </a>
+        <label htmlFor='slide-overview-drawer'><kbd className="kbd">O</kbd></label>
         <a onClick={slideRight}>
           <kbd
             className={`kbd btn h-fit ${

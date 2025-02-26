@@ -29,6 +29,7 @@ Import and use the `SlideDeck` component in your React project:
 ```tsx
 import React from 'react';
 import SlideDeck from '@kuidjamarco/slide-deck';
+import 'tailwindcss/tailwind.css'
 
 const slides = [
   ['# Welcome to Light Slide Deck'],

@@ -1,3 +1,3 @@
-import SlideDeck from "./SlideDeck";
+import SlideDeck from "./SlideDeckDrawer";
 
 export default SlideDeck;

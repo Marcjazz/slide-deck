@@ -1,76 +1,43 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 type SlideDeckControlPanelProps = {
-  slides: string[][],
-  // touch: boolean;
+  slides: string[][]
+  horizontalIndex: number
+  verticalIndex: number
+  slideUp: () => void
+  slideDown: () => void
+  slideLeft: () => void
+  slideRight: () => void
 }
 
-const SlideDeskControlPanel: React.FC<SlideDeckControlPanelProps> = ({
+const SlideDeckControlPanel: React.FC<SlideDeckControlPanelProps> = ({
   slides,
+  horizontalIndex,
+  verticalIndex,
+  slideUp,
+  slideDown,
+  slideLeft,
+  slideRight,
 }) => {
-  const [verticalIndex, setVerticalIndex] = useState<number>(0)
-  const [horizontalIndex, setHorizontalIndex] = useState<number>(0)
-
-  const slideDown = (
-    e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | KeyboardEvent
-  ) => {
-    e.preventDefault()
-
-    if (verticalIndex > 0) {
-      location.href = `#slide${horizontalIndex}.${verticalIndex - 1}`
-      setVerticalIndex((index) => index - 1)
-    }
-  }
-
-  const slideUp = (
-    e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | KeyboardEvent
-  ) => {
-    e.preventDefault()
-
-    if (verticalIndex < slides[horizontalIndex].length - 1) {
-      location.href = `#slide${horizontalIndex}.${verticalIndex + 1}`
-      setVerticalIndex((index) => index + 1)
-    }
-  }
-
-  const slideLeft = (
-    e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | KeyboardEvent
-  ) => {
-    e.preventDefault()
-
-    if (horizontalIndex > 0) {
-      location.href = `#slide${horizontalIndex - 1}.0`
-      setHorizontalIndex((index) => index - 1)
-      setVerticalIndex(0)
-    }
-  }
-
-  const slideRight = (
-    e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | KeyboardEvent
-  ) => {
-    e.preventDefault()
-
-    if (horizontalIndex < slides.length - 1) {
-      location.href = `#slide${horizontalIndex + 1}.0`
-      setHorizontalIndex((index) => index + 1)
-      setVerticalIndex(0)
-    }
-  }
-
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
+      // We need to prevent default for arrow keys to prevent scrolling the page
+      if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
+        event.preventDefault()
+      }
+
       switch (event.key) {
         case 'ArrowUp':
-          slideUp(event)
+          slideUp()
           break
         case 'ArrowDown':
-          slideDown(event)
+          slideDown()
           break
         case 'ArrowLeft':
-          slideLeft(event)
+          slideLeft()
           break
         case 'ArrowRight':
-          slideRight(event)
+          slideRight()
           break
         default:
           break
@@ -80,46 +47,81 @@ const SlideDeskControlPanel: React.FC<SlideDeckControlPanelProps> = ({
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
     }
-  }, [horizontalIndex, verticalIndex, slides])
+  }, [slideUp, slideDown, slideLeft, slideRight])
+
+  const currentHorizontalSlide = slides && slides[horizontalIndex]
+  const isLastVertical =
+    currentHorizontalSlide &&
+    verticalIndex === currentHorizontalSlide.length - 1
+  const isFirstVertical = verticalIndex === 0
+  const isFirstHorizontal = horizontalIndex === 0
+  const isLastHorizontal = slides && horizontalIndex === slides.length - 1
+
+  // Fallback if slides are not yet loaded or empty, though parent should prevent this.
+  if (!slides || slides.length === 0) {
+    return null
+  }
 
   return (
-    <div className='absolute bottom-4 right-4 flex flex-col gap-2'>
-      <a className={`flex w-full justify-center`} onClick={slideUp}>
+    <div className="absolute bottom-4 right-4 flex flex-col gap-2">
+      <a
+        className={`flex w-full justify-center`}
+        onClick={(e) => {
+          e.preventDefault()
+          slideUp()
+        }}
+      >
         <kbd
           className={`kbd btn h-fit ${
-            verticalIndex == slides[horizontalIndex].length - 1
-              ? 'btn-disabled'
-              : ''
+            isLastVertical || !currentHorizontalSlide ? 'btn-disabled' : ''
           }`}
         >
           ▲
         </kbd>
       </a>
-      <div className='flex w-full justify-center gap-4'>
-        <a onClick={slideLeft}>
+      <div className="flex w-full justify-center gap-4">
+        <a
+          onClick={(e) => {
+            e.preventDefault()
+            slideLeft()
+          }}
+        >
           <kbd
             className={`kbd btn h-fit ${
-              horizontalIndex == 0 ? 'btn-disabled' : ''
+              isFirstHorizontal ? 'btn-disabled' : ''
             }`}
           >
             ◀︎
           </kbd>
         </a>
-        <label htmlFor='slide-overview-drawer'><kbd className="kbd">O</kbd></label>
-        <a onClick={slideRight}>
+        <label htmlFor="slide-overview-drawer">
+          <kbd className="kbd">O</kbd>
+        </label>
+        <a
+          onClick={(e) => {
+            e.preventDefault()
+            slideRight()
+          }}
+        >
           <kbd
             className={`kbd btn h-fit ${
-              horizontalIndex == slides.length - 1 ? 'btn-disabled' : ''
+              isLastHorizontal ? 'btn-disabled' : ''
             }`}
           >
             ▶︎
           </kbd>
         </a>
       </div>
-      <a className={`flex w-full justify-center`} onClick={slideDown}>
+      <a
+        className={`flex w-full justify-center`}
+        onClick={(e) => {
+          e.preventDefault()
+          slideDown()
+        }}
+      >
         <kbd
           className={`kbd btn h-fit ${
-            verticalIndex == 0 ? 'btn-disabled' : ''
+            isFirstVertical || !currentHorizontalSlide ? 'btn-disabled' : ''
           }`}
         >
           ▼
@@ -129,4 +131,4 @@ const SlideDeskControlPanel: React.FC<SlideDeckControlPanelProps> = ({
   )
 }
 
-export default SlideDeskControlPanel
+export default SlideDeckControlPanel

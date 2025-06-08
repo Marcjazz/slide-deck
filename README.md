@@ -6,9 +6,13 @@ Slide Deck is a lightweight, optimized slide presentation library designed for l
 ## Features
 - **Markdown Support**: Write slides using Markdown for easy content formatting.
 - **Horizontal & Vertical Navigation**: Navigate slides using arrow keys or navigation buttons.
-- **Keyboard Shortcuts**: Move through slides with `ArrowUp`, `ArrowDown`, `ArrowLeft`, and `ArrowRight`.
-- **Customizable Navigation**: Option to enable or disable navigation buttons.
-- **Optimized for Performance**: Designed to be lightweight and fast for low-bandwidth environments.
+- **Keyboard Shortcuts**: Move through slides with `ArrowUp`, `ArrowDown`, `ArrowLeft`, and `ArrowRight`. Toggle slide overview with `O` or `o`.
+- **Optimized for Performance**: Designed to be lightweight and fast. Now features:
+  - **Lazy Loading**: Horizontal slides are lazy-loaded to improve performance for large decks.
+  - **Smooth Transitions**: Slide navigation is now smoother.
+  - **Efficient Navigation**: Utilizes direct DOM scroll manipulation for performant slide transitions.
+- **Progress Bar**: Visual indicator of your progress through the presentation.
+- **Enhanced Slide Overview**: The slide overview drawer (toggle with 'O') allows clicking on any slide preview to navigate directly to it.
 
 ## Installation
 To install the package, run:
@@ -52,8 +56,10 @@ export default App;
 ## Keyboard Shortcuts
 - **Left Arrow (◀︎)**: Previous horizontal slide
 - **Right Arrow (▶︎)**: Next horizontal slide
-- **Up Arrow (▲)**: Previous vertical slide
-- **Down Arrow (▼)**: Next vertical slide
+- **Up Arrow (▲)**: Previous vertical slide (within a horizontal slide)
+- **Down Arrow (▼)**: Next vertical slide (within a horizontal slide)
+- **'O' or 'o'**: Toggle slide overview drawer
+- **Escape**: Close slide overview drawer
 
 ## License
 MIT License. See `LICENSE` for details.

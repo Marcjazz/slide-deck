@@ -1,0 +1,6 @@
+#slide-parent {
+  scroll-behavior: smooth;
+}
+.carousel-vertical { /* This is the class for vertical slide containers */
+  scroll-behavior: smooth;
+}

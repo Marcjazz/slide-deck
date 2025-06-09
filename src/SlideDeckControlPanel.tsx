@@ -49,7 +49,7 @@ const SlideDeckControlPanel: React.FC<SlideDeckControlPanelProps> = ({
     }
   }, [slideUp, slideDown, slideLeft, slideRight])
 
-  const currentHorizontalSlide = slides && slides[horizontalIndex]
+  const currentHorizontalSlide = slides?.[horizontalIndex]
   const isLastVertical =
     currentHorizontalSlide &&
     verticalIndex === currentHorizontalSlide.length - 1

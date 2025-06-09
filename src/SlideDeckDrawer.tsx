@@ -23,21 +23,44 @@ const SlideDeckDrawer: React.FC<DrawerProps> = ({ slides }) => {
   const navigateTo = (hIndex: number, vIndex: number) => {
     setHorizontalIndex(hIndex)
     setVerticalIndex(vIndex)
+    // DOM scrolling logic is REMOVED from here
+  }
 
-    const targetSlide = document.getElementById(`slide${hIndex}.${vIndex}`)
-    const horizontalContainer = document.getElementById(`slide${hIndex}`)
+  // useEffect for handling scrolling AFTER state update and re-render
+  useEffect(() => {
+    // Only scroll if slides are present to avoid errors during initial render or empty states
+    // This check is already at the top of the component, but good for safety within effect too.
+    if (!slides || slides.length === 0) {
+      return
+    }
+
+    const targetSlide = document.getElementById(
+      `slide${horizontalIndex}.${verticalIndex}`
+    )
+    const horizontalSlideContainer = document.getElementById(
+      `slide${horizontalIndex}`
+    )
     const mainCarousel = document.getElementById('slide-parent')
 
-    if (targetSlide && horizontalContainer && mainCarousel) {
-      mainCarousel.scrollLeft = horizontalContainer.offsetLeft
-      const verticalCarousel = horizontalContainer.querySelector(
+    if (!targetSlide || !horizontalSlideContainer || !mainCarousel) {
+      console.warn(
+        `Navigation failed: Could not find required DOM elements for slide ${horizontalIndex}.${verticalIndex}`
+      )
+      return
+    }
+
+    try {
+      mainCarousel.scrollLeft = horizontalSlideContainer.offsetLeft
+      const verticalCarousel = horizontalSlideContainer.querySelector(
         '.carousel-vertical'
       ) as HTMLElement
       if (verticalCarousel) {
         verticalCarousel.scrollTop = targetSlide.offsetTop
       }
+    } catch (error) {
+      console.error('Error during slide scrolling:', error)
     }
-  }
+  }, [horizontalIndex, verticalIndex, slides]) // Added 'slides' to dependency array
 
   const slideUp = () => {
     if (verticalIndex > 0) {
@@ -47,8 +70,7 @@ const SlideDeckDrawer: React.FC<DrawerProps> = ({ slides }) => {
 
   const slideDown = () => {
     if (
-      slides && // Add null check for slides
-      slides[horizontalIndex] &&
+      slides?.[horizontalIndex] && // Applied optional chaining
       verticalIndex < slides[horizontalIndex].length - 1
     ) {
       navigateTo(horizontalIndex, verticalIndex + 1)
@@ -117,21 +139,27 @@ const SlideDeckDrawer: React.FC<DrawerProps> = ({ slides }) => {
           className="drawer-overlay"
         ></label>
         <div className="w-90 flex min-h-full gap-4 bg-base-200 p-4 text-base-content">
-          {slides && // Add null check for slides
-            slides.map((slide, hIndex) => (
-              <div key={hIndex}>
-                <div className="flex flex-col gap-4 text-xl">
+          {slides?.map((slide, hIndex) => ( // Applied optional chaining
+            <div key={hIndex}>
+              <div className="flex flex-col gap-4 text-xl">
                 {slide.map((content, vIndex) => (
                   <div
                     key={vIndex}
                     className="card h-52 w-72 cursor-pointer border border-base-content text-center hover:border-primary"
                     onClick={() => {
-                      navigateTo(hIndex, vIndex)
-                      const drawerCheckbox = document.getElementById(
-                        'slide-overview-drawer'
-                      ) as HTMLInputElement
-                      if (drawerCheckbox) {
-                        drawerCheckbox.checked = false
+                      try {
+                        navigateTo(hIndex, vIndex)
+                        const drawerCheckbox = document.getElementById(
+                          'slide-overview-drawer'
+                        ) as HTMLInputElement
+                        if (drawerCheckbox) {
+                          drawerCheckbox.checked = false
+                        }
+                      } catch (error) {
+                        console.error(
+                          'Failed to navigate from drawer or close drawer:',
+                          error
+                        )
                       }
                     }}
                   >

@@ -1,0 +1,33 @@
+name: Publish to npm
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # id-token: write # Uncomment if using OIDC for provenance
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js and authenticate with npm
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22' # Updated Node.js version
+          registry-url: 'https://registry.npmjs.org/'
+          cache: 'yarn' # Optional: enable caching for yarn dependencies
+
+      - name: Install dependencies with Yarn
+        run: yarn install --frozen-lockfile # Changed to Yarn
+
+      - name: Build package with Yarn
+        run: yarn build # Changed to Yarn
+
+      - name: Publish package to npm with Yarn
+        run: yarn publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # setup-node configures .npmrc for Yarn too

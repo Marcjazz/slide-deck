@@ -64,3 +64,9 @@ export default App;
 ## License
 MIT License. See `LICENSE` for details.
 
+## Publishing to npm
+
+This package is automatically published to the npm registry when a new release is created on GitHub.
+The process is managed by a GitHub Actions workflow defined in `.github/workflows/publish-npm.yml`.
+
+For maintainers: To enable automated publishing, an `NPM_TOKEN` secret with appropriate permissions to publish the `@kuidjamarco/slide-deck` package must be configured in the GitHub repository settings.

@@ -1,0 +1,40 @@
+name: Publish @kuidjamarco/slide-deck to npm
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish-slide-deck: # Renamed job for clarity
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # id-token: write # Uncomment if using OIDC for provenance
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        # No working-directory for checkout, it needs to be at root
+
+      - name: Set up Node.js and authenticate with npm
+        uses: actions/setup-node@v4
+        # No working-directory for setup-node, it sets up for the whole runner
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org/'
+          cache: 'yarn'
+
+      - name: Install dependencies (root)
+        run: yarn install --frozen-lockfile
+        working-directory: ./ # Run yarn install from the root
+
+      - name: Build @kuidjamarco/slide-deck
+        run: yarn workspace @kuidjamarco/slide-deck build # Explicitly build the target package
+        working-directory: ./ # Run from root to use workspace command
+
+      # The 'npm publish' command will use the version from the package's package.json.
+      # Ensure this version is updated as part of your release process (e.g., manually or with tools like 'yarn version').
+      - name: Publish @kuidjamarco/slide-deck to npm
+        run: npm publish --access public # npm is often more straightforward for CI publish from subdirs
+        working-directory: ./packages/slide-deck # CD into the package directory to publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

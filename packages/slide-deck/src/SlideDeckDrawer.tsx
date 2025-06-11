@@ -10,7 +10,7 @@ type DrawerProps = {
   theme?: string;
 }
 
-const SlideDeckDrawer: React.FC<DrawerProps> = ({ slides, theme = 'light' }) => {
+const SlideDeckDrawer: React.FC<DrawerProps> = ({ slides, theme = 'winter' }) => {
   if (!slides || slides.length === 0) {
     return (
       <div className="flex h-full w-full items-center justify-center">

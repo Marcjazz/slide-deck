@@ -19,7 +19,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
 
   return (
     <div
-      className="fixed bottom-0 left-0 w-full h-2 bg-gray-200" // Or use theme colors
+      className="fixed bottom-0 left-0 w-full h-3 bg-base-300" // Use theme colors
       role="progressbar"
       aria-valuenow={progressPercentage}
       aria-valuemin={0}
@@ -27,7 +27,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
       aria-label={`Slide ${currentHorizontalIndex + 1} of ${totalHorizontalSlides}`}
     >
       <div
-        className="h-full bg-blue-500" // Or use theme colors
+        className="h-full bg-primary" // Use theme colors
         style={{ width: `${progressPercentage}%` }}
       />
     </div>

@@ -65,7 +65,7 @@ const SlideDeckControlPanel: React.FC<SlideDeckControlPanelProps> = ({
   }
 
   return (
-    <div className="absolute bottom-4 right-4 flex flex-col gap-2">
+    <div className="absolute bottom-4 left-4 flex flex-col gap-3">
       <a
         className={`flex w-full justify-center`}
         onClick={(e) => {
@@ -81,7 +81,7 @@ const SlideDeckControlPanel: React.FC<SlideDeckControlPanelProps> = ({
           ▲
         </kbd>
       </a>
-      <div className="flex w-full justify-center gap-4">
+      <div className="flex w-full justify-center gap-3">
         <a
           onClick={(e) => {
             e.preventDefault()

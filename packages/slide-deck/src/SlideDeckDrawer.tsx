@@ -7,9 +7,10 @@ import ProgressBar from './ProgressBar' // Import ProgressBar
 
 type DrawerProps = {
   slides: string[][]
+  theme?: string;
 }
 
-const SlideDeckDrawer: React.FC<DrawerProps> = ({ slides }) => {
+const SlideDeckDrawer: React.FC<DrawerProps> = ({ slides, theme = 'light' }) => {
   if (!slides || slides.length === 0) {
     return (
       <div className="flex h-full w-full items-center justify-center">
@@ -116,7 +117,7 @@ const SlideDeckDrawer: React.FC<DrawerProps> = ({ slides }) => {
   }, [])
 
   return (
-    <div className="drawer h-full w-full">
+    <div className="drawer h-full w-full" data-theme={theme}>
       <input
         id="slide-overview-drawer"
         type="checkbox"

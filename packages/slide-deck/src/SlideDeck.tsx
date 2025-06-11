@@ -2,6 +2,8 @@
 
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
+import rehypeHighlight from 'rehype-highlight'
+import 'highlight.js/styles/github.css'
 import SlideDeckControlPanel from './SlideDeckControlPanel'
 
 type SlideDeckProps = {
@@ -55,7 +57,7 @@ const SlideDeck: React.FC<SlideDeckProps> = ({
                     className="carousel-item h-full items-center"
                   >
                     <div className="w-full text-center">
-                      <ReactMarkdown>{content}</ReactMarkdown>
+                      <ReactMarkdown rehypePlugins={[rehypeHighlight]}>{content}</ReactMarkdown>
                     </div>
                   </div>
                 ))}

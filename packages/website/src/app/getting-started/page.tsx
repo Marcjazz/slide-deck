@@ -32,10 +32,10 @@ export default App;
         <h2 className="text-2xl font-semibold mb-3">Installation</h2>
         <p className="mb-2">You can install <code className="font-mono bg-gray-200 p-1 rounded">@kuidjamarco/slide-deck</code> using yarn or npm:</p>
         <pre className="bg-gray-100 p-4 rounded overflow-x-auto mb-2">
-          <code>yarn add @kuidjamarco/slide-deck</code>
+          <code>yarn add @kdmarc/slide-deck</code>
         </pre>
         <pre className="bg-gray-100 p-4 rounded overflow-x-auto">
-          <code>npm install @kuidjamarco/slide-deck</code>
+          <code>npm install @kdmarc/slide-deck</code>
         </pre>
         <p className="mt-2">
           Ensure you have React and ReactDOM as peer dependencies in your project.
@@ -45,7 +45,7 @@ export default App;
 
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-3">Minimal Usage</h2>
-        <p className="mb-2">Here's a basic example of how to use the <code className="font-mono bg-gray-200 p-1 rounded">SlideDeck</code> component:</p>
+        <p className="mb-2">Here&apos;s a basic example of how to use the <code className="font-mono bg-gray-200 p-1 rounded">SlideDeck</code> component:</p>
         <pre className="bg-gray-100 p-4 rounded overflow-x-auto">
           <code>{usageExample.trim()}</code>
         </pre>

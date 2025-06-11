@@ -6,8 +6,8 @@
     "packages/*"
   ],
   "scripts": {
-    "build:slide-deck": "yarn workspace @kuidjamarco/slide-deck build",
-    "dev:slide-deck": "yarn workspace @kuidjamarco/slide-deck dev",
+    "build:slide-deck": "yarn workspace @kdmarc/slide-deck build",
+    "dev:slide-deck": "yarn workspace @kdmarc/slide-deck dev",
     "dev:website": "yarn workspace @kdmarc/website dev",
     "build:website": "yarn workspace @kdmarc/website build",
     "start:website": "yarn workspace @kdmarc/website start",

@@ -1,5 +1,4 @@
-// packages/website/src/app/demo/page.tsx
-import SlideDeck from '@kuidjamarco/slide-deck'; // This should resolve via workspace linking
+import SlideDeck from '@kdmarc/slide-deck';
 import React from 'react';
 
 // Sample slides for demonstration

@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import SlideDeckControlPanel from './SlideDeckControlPanel'
@@ -35,7 +37,7 @@ const SlideDeck: React.FC<SlideDeckProps> = ({
   return (
     <div
       id="slide-parent"
-      className="carousel h-full w-full overflow-hidden rounded-box"
+      className="carousel h-full w-full overflow-hidden scroll-smooth rounded-box"
     >
       {slides.map((slide, index) => {
         if (index >= startIndex && index <= endIndex) {
@@ -45,7 +47,7 @@ const SlideDeck: React.FC<SlideDeckProps> = ({
               key={index}
               className="carousel-item w-full"
             >
-              <div className="carousel-vertical carousel h-full w-full overflow-hidden rounded-box">
+              <div className="carousel-vertical carousel h-full w-full overflow-hidden scroll-smooth rounded-box">
                 {slide.map((content, vIndex) => (
                   <div
                     id={`slide${index}.${vIndex}`}
@@ -61,7 +63,7 @@ const SlideDeck: React.FC<SlideDeckProps> = ({
             </div>
           )
         }
-        return null // Do not render slides outside the range
+        return null
       })}
       <SlideDeckControlPanel
         slides={slides}

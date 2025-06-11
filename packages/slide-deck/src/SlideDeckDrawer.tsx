@@ -1,8 +1,9 @@
+'use client';
+
 import { useEffect, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import SlideDeck from './SlideDeck'
 import ProgressBar from './ProgressBar' // Import ProgressBar
-import './styles.css'
 
 type DrawerProps = {
   slides: string[][]

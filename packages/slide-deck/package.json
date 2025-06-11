@@ -1,20 +1,22 @@
 {
-  "name": "@kuidjamarco/slide-deck",
+  "name": "@kdmarc/slide-deck",
   "version": "1.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
-    "dev": "tsc -w",
-    "prepare": "yarn build"
+    "lint": "eslint . --ext .ts,.tsx"
   },
   "keywords": [],
   "author": "Marco Kuidja <kuidjamarco@gmail.com>",
   "license": "MIT",
-  "type": "commonjs",
+  "type": "module",
   "description": "",
   "dependencies": {
+    "daisyui": "^5.0.43",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-markdown": "^10.0.0",
@@ -24,6 +26,7 @@
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "ts-node": "^10.9.2",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "vite": "^6.3.5"
   }
 }

@@ -5,7 +5,6 @@ const config: Config = {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-    // Add path to the slide-deck library:
     '../slide-deck/src/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
@@ -17,6 +16,5 @@ const config: Config = {
       },
     },
   },
-  plugins: [require('daisyui')],
 }
 export default config

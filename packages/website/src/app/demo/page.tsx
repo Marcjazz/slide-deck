@@ -80,7 +80,7 @@ export default function DemoPage() {
       </div>
 
       <div className="w-full md:w-3/4 lg:w-2/3 shadow-xl rounded-box overflow-hidden" style={{ height: '600px' }}>
-        <SlideDeck slides={demoSlides} theme={theme} textAlign={textAlign} />
+        <SlideDeck slides={demoSlides} theme={theme} />
       </div>
     </div>
   );

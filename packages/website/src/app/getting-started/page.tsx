@@ -129,8 +129,8 @@ export default function MyPresentationPage() {
         <h2 className="text-3xl font-semibold mb-4">Controlling Text Alignment</h2>
         <p>
           You can control the text alignment for all slides using the <code className="font-mono bg-base-200 p-1 rounded text-sm">textAlign</code> prop on the <code className="font-mono bg-base-200 p-1 rounded text-sm">SlideDeck</code> component.
-          It accepts the values <code className="font-mono bg-base-200 p-1 rounded text-sm">'left'</code>, <code className="font-mono bg-base-200 p-1 rounded text-sm">'center'</code>, or <code className="font-mono bg-base-200 p-1 rounded text-sm">'right'</code>.
-          The default alignment is <code className="font-mono bg-base-200 p-1 rounded text-sm">'center'</code>.
+          It accepts the values <code className="font-mono bg-base-200 p-1 rounded text-sm">left</code>, <code className="font-mono bg-base-200 p-1 rounded text-sm">center</code>, or <code className="font-mono bg-base-200 p-1 rounded text-sm">right</code>.
+          The default alignment is <code className="font-mono bg-base-200 p-1 rounded text-sm">center</code>.
         </p>
         <p>Example:</p>
         <div className="mockup-code my-4">
@@ -143,11 +143,11 @@ export default function MyPresentationPage() {
       <section className="mb-12">
         <h2 className="text-3xl font-semibold mb-4">Theming</h2>
         <p>
-          The <code className="font-mono bg-base-200 p-1 rounded text-sm">SlideDeck</code> component defaults to the <code className="font-mono bg-base-200 p-1 rounded text-sm">'winter'</code> theme but accepts a <code className="font-mono bg-base-200 p-1 rounded text-sm">theme</code> prop. You can pass any valid DaisyUI theme name to customize the appearance of the slides.
-          Some other recommended flat and modern themes include <code className="font-mono bg-base-200 p-1 rounded text-sm">'cupcake'</code>, <code className="font-mono bg-base-200 p-1 rounded text-sm">'emerald'</code>, or <code className="font-mono bg-base-200 p-1 rounded text-sm">'corporate'</code>.
+          The <code className="font-mono bg-base-200 p-1 rounded text-sm">SlideDeck</code> component defaults to the <code className="font-mono bg-base-200 p-1 rounded text-sm">winter</code> theme but accepts a <code className="font-mono bg-base-200 p-1 rounded text-sm">theme</code> prop. You can pass any valid DaisyUI theme name to customize the appearance of the slides.
+          Some other recommended flat and modern themes include <code className="font-mono bg-base-200 p-1 rounded text-sm">cupcake</code>, <code className="font-mono bg-base-200 p-1 rounded text-sm">emerald</code>, or <code className="font-mono bg-base-200 p-1 rounded text-sm">corporate</code>.
         </p>
         <p>
-          For example, to use the dark theme: <code className="font-mono bg-base-200 p-1 rounded text-sm">&lt;SlideDeck slides={mySlides} theme="dark" /&gt;</code>.
+          For example, to use the dark theme: <code className="font-mono bg-base-200 p-1 rounded text-sm">{`<SlideDeck slides={mySlides} theme="dark" />`}</code>.
         </p>
         <p>
           Refer to the <a href="https://daisyui.com/docs/themes/" target="_blank" rel="noopener noreferrer" className="link link-primary">official DaisyUI documentation</a> for a list of available themes and how to create your own.

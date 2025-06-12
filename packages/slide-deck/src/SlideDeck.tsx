@@ -4,8 +4,9 @@ import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import rehypeHighlight from 'rehype-highlight'
 import remarkGfm from 'remark-gfm';
-import 'highlight.js/styles/github.css'
+import 'highlight.js/styles/github.css';
 import SlideDeckControlPanel from './SlideDeckControlPanel'
+import type { Pluggable } from 'unified';
 
 type SlideDeckProps = {
   slides: string[][]
@@ -60,7 +61,7 @@ const SlideDeck: React.FC<SlideDeckProps> = ({
                     className="carousel-item h-full items-center"
                   >
                     <div className={`w-full p-8 ${textAlign === 'left' ? 'text-left' : textAlign === 'right' ? 'text-right' : 'text-center'}`}>
-                      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>{content}</ReactMarkdown>
+                      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight as Pluggable]}>{content}</ReactMarkdown>
                     </div>
                   </div>
                 ))}

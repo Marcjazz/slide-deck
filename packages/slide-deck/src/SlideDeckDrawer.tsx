@@ -8,9 +8,10 @@ import ProgressBar from './ProgressBar' // Import ProgressBar
 type DrawerProps = {
   slides: string[][]
   theme?: string;
+  textAlign?: 'left' | 'center' | 'right';
 }
 
-const SlideDeckDrawer: React.FC<DrawerProps> = ({ slides, theme = 'winter' }) => {
+const SlideDeckDrawer: React.FC<DrawerProps> = ({ slides, theme = 'winter', textAlign }) => {
   if (!slides || slides.length === 0) {
     return (
       <div className="flex h-full w-full items-center justify-center">
@@ -123,7 +124,7 @@ const SlideDeckDrawer: React.FC<DrawerProps> = ({ slides, theme = 'winter' }) =>
         type="checkbox"
         className="drawer-toggle"
       />
-      <div className="drawer-content">
+      <div className="drawer-content relative"> {/* Added relative positioning */}
         <SlideDeck
           slides={slides}
           horizontalIndex={horizontalIndex}
@@ -132,6 +133,7 @@ const SlideDeckDrawer: React.FC<DrawerProps> = ({ slides, theme = 'winter' }) =>
           slideDown={slideDown}
           slideLeft={slideLeft}
           slideRight={slideRight}
+          textAlign={textAlign}
         />
       </div>
       <div className="drawer-side overflow-scroll">

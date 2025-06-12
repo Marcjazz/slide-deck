@@ -74,8 +74,8 @@ const SlideDeckControlPanel: React.FC<SlideDeckControlPanelProps> = ({
         }}
       >
         <kbd
-          className={`kbd btn h-fit ${
-            isLastVertical || !currentHorizontalSlide ? 'btn-disabled' : ''
+          className={`kbd btn btn-sm ${
+            isFirstVertical || !currentHorizontalSlide ? 'btn-disabled' : ''
           }`}
         >
           ▲
@@ -89,7 +89,7 @@ const SlideDeckControlPanel: React.FC<SlideDeckControlPanelProps> = ({
           }}
         >
           <kbd
-            className={`kbd btn h-fit ${
+            className={`kbd btn btn-sm ${
               isFirstHorizontal ? 'btn-disabled' : ''
             }`}
           >
@@ -97,7 +97,7 @@ const SlideDeckControlPanel: React.FC<SlideDeckControlPanelProps> = ({
           </kbd>
         </a>
         <label htmlFor="slide-overview-drawer">
-          <kbd className="kbd">O</kbd>
+          <kbd className="kbd btn btn-sm">O</kbd>
         </label>
         <a
           onClick={(e) => {
@@ -106,7 +106,7 @@ const SlideDeckControlPanel: React.FC<SlideDeckControlPanelProps> = ({
           }}
         >
           <kbd
-            className={`kbd btn h-fit ${
+            className={`kbd btn btn-sm ${
               isLastHorizontal ? 'btn-disabled' : ''
             }`}
           >
@@ -122,8 +122,8 @@ const SlideDeckControlPanel: React.FC<SlideDeckControlPanelProps> = ({
         }}
       >
         <kbd
-          className={`kbd btn h-fit ${
-            isFirstVertical || !currentHorizontalSlide ? 'btn-disabled' : ''
+          className={`kbd btn btn-sm ${
+            isLastVertical || !currentHorizontalSlide ? 'btn-disabled' : ''
           }`}
         >
           ▼

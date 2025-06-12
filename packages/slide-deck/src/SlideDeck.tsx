@@ -4,9 +4,8 @@ import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import rehypeHighlight from 'rehype-highlight'
 import remarkGfm from 'remark-gfm';
-import 'highlight.js/styles/github.css';
+import 'highlight.js/styles/github.css'
 import SlideDeckControlPanel from './SlideDeckControlPanel'
-import type { Pluggable } from 'unified';
 
 type SlideDeckProps = {
   slides: string[][]
@@ -43,7 +42,7 @@ const SlideDeck: React.FC<SlideDeckProps> = ({
   return (
     <div
       id="slide-parent"
-      className="carousel h-full w-full overflow-hidden scroll-smooth rounded-box"
+      className="carousel h-full w-full overflow-hidden scroll-smooth rounded-box relative"
     >
       {slides.map((slide, index) => {
         if (index >= startIndex && index <= endIndex) {
@@ -60,8 +59,8 @@ const SlideDeck: React.FC<SlideDeckProps> = ({
                     key={vIndex}
                     className="carousel-item h-full items-center"
                   >
-                    <div className={`w-full p-8 ${textAlign === 'left' ? 'text-left' : textAlign === 'right' ? 'text-right' : 'text-center'}`}>
-                      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight as Pluggable]}>{content}</ReactMarkdown>
+                    <div className={`w-full p-8 overflow-y-auto ${textAlign === 'left' ? 'text-left' : textAlign === 'right' ? 'text-right' : 'text-center'}`}>
+                      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>{content}</ReactMarkdown>
                     </div>
                   </div>
                 ))}

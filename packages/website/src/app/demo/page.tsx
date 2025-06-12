@@ -3,8 +3,37 @@
 import SlideDeck from '@kdmarc/slide-deck';
 import React, { useState } from 'react';
 
-// Available themes for DaisyUI
-const availableThemes = ["light", "dark", "cupcake", "bumblebee", "emerald", "synthwave", "retro", "cyberpunk", "valentine", "halloween", "garden", "forest", "aqua", "lofi", "pastel", "fantasy", "wireframe", "black", "luxury", "dracula", "cmyk", "autumn", "business", "acid", "lemonade", "night", "coffee", "winter"];
+// Available themes for DaisyUI - curated for initial distinctness
+const availableThemes = [
+    "light",        // Default light
+    "dark",         // Default dark
+    "cupcake",      // Light, colorful
+    "synthwave",    // Dark, vibrant
+    "winter",       // Current default, clean light
+    "bumblebee",
+    "emerald",
+    "retro",
+    "cyberpunk",
+    "valentine",
+    "halloween",
+    "garden",
+    "forest",
+    "aqua",
+    "lofi",
+    "pastel",
+    "fantasy",
+    "wireframe",
+    "black",
+    "luxury",
+    "dracula",
+    "cmyk",
+    "autumn",
+    "business",
+    "acid",
+    "lemonade",
+    "night",
+    "coffee"
+];
 
 export default function DemoPage() {
   const [theme, setTheme] = useState('winter');
@@ -79,8 +108,12 @@ export default function DemoPage() {
         </div>
       </div>
 
-      <div className="w-full md:w-3/4 lg:w-2/3 shadow-xl rounded-box overflow-hidden" style={{ height: '600px' }}>
-        <SlideDeck slides={demoSlides} theme={theme} />
+      <div
+        className="w-full md:w-3/4 lg:w-2/3 shadow-xl rounded-box overflow-hidden"
+        style={{ height: '600px' }}
+        data-theme={theme} // Apply theme to the wrapper
+      >
+        <SlideDeck slides={demoSlides} theme={theme} textAlign={textAlign} />
       </div>
     </div>
   );
